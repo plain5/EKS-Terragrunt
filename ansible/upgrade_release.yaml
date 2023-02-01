@@ -1,0 +1,17 @@
+
+---
+
+ - name: This playbook upgrades existing helm release
+   hosts: localhost
+   gather_facts: no
+   any_errors_fatal: true
+
+
+   vars_prompt:
+     - name: helm_release_name
+       prompt: Enter desired helm release name to upgrade
+       private: false
+
+
+   roles:
+   - { role: upgrade_release }

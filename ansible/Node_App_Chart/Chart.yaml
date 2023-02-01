@@ -1,0 +1,9 @@
+apiVersion: v2
+name: application-HelmChart
+version: 0.1.0
+description: Helm Chart for K8s Node JS application
+type: application
+appVersion: "1.0.0"
+
+owners:
+  - name: Dmytrii Kulyk

@@ -1,0 +1,62 @@
+container:
+  image: 999360891534.dkr.ecr.us-east-1.amazonaws.com/node-app:latest-02-01-23.11-47-36
+  minReplicasCount: 2
+  maxReplicasCount: 4
+  port: 3000
+  name: node-js-application
+
+serviceAccount:
+  roleARN: arn:aws:iam::999360891534:role/secrets-manager-read-access
+  name: app
+
+secretName: my-secret-01
+
+secretsManagerSecretName: prod/app/variables
+
+spaceId:
+  alias: space_id
+  secretKey: CONTENTFUL_SPACE_ID
+  secretObjectKey: space_id_01
+
+deliveryToken:
+  alias: delivery_token
+  secretKey: CONTENTFUL_DELIVERY_TOKEN
+  secretObjectKey: delivery_token_01
+
+previewToken:
+  alias: preview_token
+  secretKey: CONTENTFUL_PREVIEW_TOKEN
+  secretObjectKey: preview_token_01
+
+storageClass:
+  name: efs-sc
+  directoryPerms: 700
+
+pvc:
+  name: efs-claim
+  storage: 5Gi
+
+pv:
+  name: persistent-storage
+  mountPath: /data
+
+secretsVolume:
+  name: secrets-store-inline
+  mountPath: /mnt/secrets
+
+efsId: fs-0aa2a71007914f5cc
+
+podSelectorLabel: app
+
+svc:
+  type: ClusterIP
+  port: 80
+
+hpa:
+  cpuAverageUtilization: 80
+  memoryAverageUtilization: 80
+
+ingress:
+  targetType: ip
+  sslCertificateARN: arn:aws:acm:us-east-1:999360891534:certificate/67f8950d-b391-4003-9e1d-3ff2c2459a09
+  scheme: internet-facing 

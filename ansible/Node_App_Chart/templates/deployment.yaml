@@ -1,0 +1,67 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Release.Name }}
+  name: {{ .Release.Name }}-deployment
+  labels:
+    app.kubernetes.io/name: {{ .Values.podSelectorLabel }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Values.podSelectorLabel }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Values.podSelectorLabel }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      containers:
+      - image: {{ .Values.container.image }}
+        name: {{ .Values.container.name }}
+        ports:
+        - containerPort: {{ .Values.container.port }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.container.port }}
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.container.port }}
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        volumeMounts:
+          - name: {{ .Values.pv.name }}
+            mountPath: "{{ .Values.pv.mountPath }}"
+          - name: {{ .Values.secretsVolume.name }}
+            mountPath: "{{ .Values.secretsVolume.mountPath }}"
+            readOnly: true
+        env:
+          - name: {{ .Values.spaceId.secretKey }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.secretName }}
+                key: {{ .Values.spaceId.secretObjectKey }}
+          - name: {{ .Values.deliveryToken.secretKey }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.secretName }}
+                key: {{ .Values.deliveryToken.secretObjectKey }}
+          - name: {{ .Values.previewToken.secretKey }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.secretName }}
+                key: {{ .Values.previewToken.secretObjectKey }}
+      volumes:
+        - name: {{ .Values.pv.name }}
+          persistentVolumeClaim:
+            claimName: "{{ .Values.pvc.name }}"
+        - name: {{ .Values.secretsVolume.name }}
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: {{ .Release.Name }}-deployment-spc-k8s-secrets

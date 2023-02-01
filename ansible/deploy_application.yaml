@@ -1,0 +1,16 @@
+---
+
+ - name: This playbook deploys Node JS application using helm
+   hosts: localhost
+   gather_facts: no
+   any_errors_fatal: true
+
+
+   vars_prompt:
+     - name: helm_release_name
+       prompt: Enter desired helm release name to deploy
+       private: false
+
+
+   roles:
+   - { role: deploy_application }

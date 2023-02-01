@@ -1,0 +1,21 @@
+---
+#tasks to build Dockerfile and push it to the ECR:
+
+- name: Authorize
+
+- name: Build Dockerfile
+  shell:
+   docker build /home/ec2-user/ansible/its-app -t its-app:latest
+
+- name: Re-tag created image
+  shell:
+   docker tag its-app:latest 999360891534.dkr.ecr.us-east-1.amazonaws.com/node-app
+
+- name: Push image to ECR
+  shell:
+   docker push 999360891534.dkr.ecr.us-east-1.amazonaws.com/node-app:latest
+  register: push_results
+
+- debug:
+   var: push_results.stdout_lines
+

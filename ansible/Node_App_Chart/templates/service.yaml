@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ .Release.Name }}
+  name: {{ .Release.Name }}-service
+spec:
+  ports:
+  - name: http
+    protocol: TCP
+    port: {{ .Values.svc.port }}
+    targetPort: {{ .Values.container.port }}     
+  type: {{ .Values.svc.type }}
+  selector:
+    app.kubernetes.io/name: {{ .Values.podSelectorLabel }}

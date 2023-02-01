@@ -1,0 +1,11 @@
+---
+# tasks file for deploy_application
+
+- name: Deploy application using helm
+  shell:
+   helm install {{ helm_release_name }} ~/ansible/Node_App_Chart/
+  register: deploy_results
+
+- debug:
+   var: deploy_results.stdout_lines
+

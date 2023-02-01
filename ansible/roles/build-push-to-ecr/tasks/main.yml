@@ -1,0 +1,28 @@
+---
+#tasks to build Dockerfile and push it to the ECR:
+
+- name: Login to ECR
+  shell:
+   aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 999360891534.dkr.ecr.us-east-1.amazonaws.com
+
+- name: Generate an unique Docker image tag
+  shell:
+   date '+%m-%d-%y.%H-%M-%S'
+  register: image_tag
+
+- name: Build Dockerfile
+  shell:
+   docker build ~/ansible/its-app -t its-app:latest-{{ image_tag.stdout }}
+
+- name: Re-tag created image
+  shell:
+   docker tag its-app:latest-{{ image_tag.stdout }} 999360891534.dkr.ecr.us-east-1.amazonaws.com/node-app:latest-{{ image_tag.stdout }}
+
+- name: Push image to ECR
+  shell:
+   docker push 999360891534.dkr.ecr.us-east-1.amazonaws.com/node-app:latest-{{ image_tag.stdout }}
+  register: push_results
+
+- debug:
+   var: push_results.stdout_lines
+

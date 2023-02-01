@@ -1,0 +1,9 @@
+---
+
+ - name: This playbook builds Dockerfile and pushes it to the ECR
+   hosts: localhost
+   gather_facts: no
+   any_errors_fatal: true
+
+   roles:
+   - { role: build-push-to-ecr }
