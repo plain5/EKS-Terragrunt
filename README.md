@@ -1,2 +1,2 @@
-# K8s-Project
-ITSyndicate cource project
+# Project scheme
+![](./project_scheme/image.jpg)
