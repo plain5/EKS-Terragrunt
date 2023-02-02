@@ -37,10 +37,11 @@ aws eks update-kubeconfig --region us-east-1 --name education-eks
   - *[Secrets Store CSI Secret driver and AWS Secrets and Configuration Provider (ASCP)](https://www.eksworkshop.com/beginner/194_secrets_manager/configure-csi-driver/)*
 
 # ㊙️ Create Secrets Manager secret ㊙️
-* Create *one* Secrets Manager secret :
+* Create only `one` Secrets Manager secret :
 
   * for `Secret type` choose `Other type of secret`;
   * create 3 `Key/value pairs` with the following keys : `CONTENTFUL_SPACE_ID`, `CONTENTFUL_DELIVERY_TOKEN`, `CONTENTFUL_PREVIEW_TOKEN`. Fill in the values yourself 😉
+  * give `prod/app/variables` value for the secret name.
 
 # 📑 Prepare needed IAM Roles 📑
   1) Create IAM Policy with access to your Secrets Manager secret (replace `YOUR_SECRET_ARN` with your Secrets Manager secret ARN) :
