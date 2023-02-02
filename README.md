@@ -154,4 +154,13 @@ ansible-playbook upgrade_release.yaml
 for the release name enter *application* (without asterisks)
 ```
 
+# 🗺️ OpenSearch Service 🗺️
+* We also need to enable CloudWatch Logs streaming to the OpenSeacrh Service. Move to CloudWatch -> Log groups. Then :
+
+  * select `/aws/eks/education-eks/cluster` Log group;
+  * click `Actions` -> `Subscription filters` -> `Create Amazon OpenSearch Service subscription filter`; you'll be forwarded on a new page;
+  * `Select account` - `This account`, `Amazon Opensearch Service Cluser` - choose one availabale `its-application`, `Lambda IAM Execution Role` select created in the `Prepare needed IAM Roles` block step №4;
+  * `Log format` - `Json`, `Subscription filter pattern` - `" "`, `Subscription filter name` enter what you wish. Scroll down and click `Start Streaming`.
+  
+  
 Have you made it this far? I have the utmost respect for you 👏
