@@ -155,12 +155,27 @@ for the release name enter *application* (without asterisks)
 ```
 
 # 🗺️ OpenSearch Service 🗺️
+* Navigate to OpenSearch Service in the  AWS Management Console : 
+
+  * Click on `its-application` cluster -> open `OpenSearch Dashboards URL`;
+  * Login with credentials provided at `infrastructure/opensearch/terragrunt.hcl` file;
+  * `Explore on my own` -> `Select your tenant` - `Global` -> `Confirm`;
+  * click on the three vertical lines in the left upper corner -> `Security` -> `Roles` -> `all_access` -> `Mapped users`;
+  * click on `Manage mapping` button -> for `Backend roles` put IAM Role ARN created in the `Prepare needed IAM Roles` block step №4 -> `Map`.
+
 * We also need to enable CloudWatch Logs streaming to the OpenSeacrh Service. Move to CloudWatch -> Log groups. Then :
 
   * select `/aws/eks/education-eks/cluster` Log group;
   * click `Actions` -> `Subscription filters` -> `Create Amazon OpenSearch Service subscription filter`; you'll be forwarded on a new page;
-  * `Select account` - `This account`, `Amazon Opensearch Service Cluser` - choose one availabale `its-application`, `Lambda IAM Execution Role` select created in the `Prepare needed IAM Roles` block step №4;
+  * `Select account` - `This account`, `Amazon Opensearch Service Cluser` - choose one available `its-application`, `Lambda IAM Execution Role` select created in the `Prepare needed IAM Roles` block step №4;
   * `Log format` - `Json`, `Subscription filter pattern` - `" "`, `Subscription filter name` enter what you wish. Scroll down and click `Start Streaming`.
+
+* The last step is to create `Index pattern` in OpenSearch Service :
+  * open `OpenSearch Dashboards URL` main page;
+  * click on the three vertical lines in the left upper corner -> `Discover` -> `Index patterns` -> `Create index pattern`;
+  * put `*` for `Index pattern name` (below that field, you'll see matched index with your logs named `cwl-`) -> click `Next step`;
+  * choose `@timestamp` for `Time field` -> `Create index pattern`;
+  * click on the three vertical lines in the left upper corner -> `Discover` -> that's all. Now you are accessible to dive deep into the given data!
   
-  
-Have you made it this far? I have the utmost respect for you 👏
+Have you made it this far? I have the utmost respect for you 👏</br>
+glhf
