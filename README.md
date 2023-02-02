@@ -10,6 +10,22 @@
   - *[Helm](https://helm.sh/docs/intro/install/)*
   - *[Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)*
 
+# ⚙️ Additional configuration ⚙️
+* Before starting you should perform the following :
+  * create IAM user with `AdministratorAccess`;
+  * edit `~/.aws/credentials` file like showed below :<br>
+    *[default]<br>
+    aws_access_key_id = ACCESS_KEY_FROM_THE_FIRST_STEP<br>
+    aws_secret_access_key = SECRET_ACCESS_KEY_FROM_THE_FIRST_STEP<br>*
+  * change S3 Bucket config in the root `terragrunt.hcl`;
+  * set up your credentials for OpenSearch Service master user in `infrastructure/opensearch/terragrunt.hcl`;
+  * change Route 53 `zone_name` in `infrastructure/opensearch_module/main.tf`;
+  * change AWS account ID in :
+    * `infrastructure/opensearch_module/main.tf`;
+    * `ansible/roles/build-push-to-ecr/tasks/main.yml`;
+    * `ansible/roles/upgrade_release/tasks/main.yml`.
+  * change `ingress.sslCertificateARN` & `efsId` in `ansible/Node_App_Chart/values.yaml`.
+
 # 🏰 Create infrastructure 🏰
 * Perform the following steps :
 ```
