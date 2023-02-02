@@ -12,7 +12,7 @@
 
 # ⚙️ Additional configuration ⚙️
 * Before starting you should perform the following :
-* 
+ 
   * create IAM user with `AdministratorAccess`;
   * edit `~/.aws/credentials` file like showed below :<br>
     *[default]<br>
