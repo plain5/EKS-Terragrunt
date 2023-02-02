@@ -62,7 +62,7 @@ aws eks update-kubeconfig --region us-east-1 --name education-eks
 
   2) Create IAM Role for access with our ServiceAccount to the Secrets Manager :
   
-     * for `Identity provider` choose one available `OpenID Connect` which was automatically created during infrastructure provisioning;
+     * for `Identity provider` choose one available `OpenID Connect` which was automatically created during infrastructure building;
      * for `Audience` choose `sts.amazonaws.com`;
      * for `Permission policies` choose our policy from the first step;
      * create your role. After this edit it `Trust Relatoinship` like below (replace `YOUR_AWS_ACCOUNT_ID` and `YOUR_EKS_CLUSTER_ID` with appropriative values) :
@@ -103,7 +103,7 @@ cd ~/ansible/
 ansible-playbook build-push-to-ecr.yml
 ```
 
-After these steps, navigate to your AWS ECR repository and copy just pushed Image URI. Then move to `ansible/Node_App_Chart/values.yaml` and change the `container.image` value by just copied. This only needs to be done once. Afterward, another Ansible role will automatically update the container image.
+After these steps, navigate to your AWS ECR repository and copy just pushed Image URI. Then move to `ansible/Node_App_Chart/values.yaml` and change the `container.image` value by just copied. This only needs to be done once. Afterward, another Ansible role will be responsible for this.
   
 # 🚀 Deploy your application 🚀
 * Perform the following steps :
@@ -158,7 +158,7 @@ for the release name enter *application* (without asterisks)
 * Navigate to OpenSearch Service in the  AWS Management Console : 
 
   * Click on `its-application` cluster -> open `OpenSearch Dashboards URL`;
-  * Login with credentials provided at `infrastructure/opensearch/terragrunt.hcl` file;
+  * Log in with credentials provided at `infrastructure/opensearch/terragrunt.hcl` file;
   * `Explore on my own` -> `Select your tenant` - `Global` -> `Confirm`;
   * click on the three vertical lines in the left upper corner -> `Security` -> `Roles` -> `all_access` -> `Mapped users`;
   * click on `Manage mapping` button -> for `Backend roles` put IAM Role ARN created in the `Prepare needed IAM Roles` block step №4 -> `Map`.
