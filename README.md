@@ -1,8 +1,9 @@
-# Project scheme
+# ⏸️ Project scheme ⏸️
 ![](./project_scheme/image.jpg)
 
 # Requiremetns
 * Before start you should install :
+
   - *[AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)*
   - *[Terraform](https://developer.hashicorp.com/terraform/downloads)*
   - *[kubectl](https://kubernetes.io/docs/tasks/tools/)*
@@ -31,10 +32,17 @@ aws eks update-kubeconfig --region us-east-1 --name education-eks
 
 # Prepare your EKS cluster
 * Install the following :
+
   - *[AWS Load Balancer Controller](https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html#lbc-install-controller)*
   - *[Amazon EFS CSI driver](https://docs.aws.amazon.com/eks/latest/userguide/efs-csi.html)*
   - *[Secrets Store CSI Secret driver and AWS Secrets and Configuration Provider (ASCP)](https://www.eksworkshop.com/beginner/194_secrets_manager/configure-csi-driver/)*
-  
+
+# ㊙️ Create Secrets Manager secret ㊙️
+* Create *one* Secrets Manager secret :
+
+  * for `Secret type` choose `Other type of secret`;
+  * create 3 `Key/value pairs` with the following keys : `CONTENTFUL_SPACE_ID`, `CONTENTFUL_DELIVERY_TOKEN`, `CONTENTFUL_PREVIEW_TOKEN`. Fill in the values yourself 😉
+
 # Prepare needed IAM Roles
   1) Create IAM Policy with access to your Secrets Manager secret (replace `YOUR_SECRET_ARN` with your Secrets Manager secret ARN) :
 ```
