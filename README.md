@@ -11,7 +11,7 @@
   - *[Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)*
 
 # ⚙️ Additional configuration ⚙️
-* Before starting you should perform the following :
+* Before starting, you should perform the following actions :
  
   * create IAM user with `AdministratorAccess`;
   * edit `~/.aws/credentials` file like showed below :<br>
