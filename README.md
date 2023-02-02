@@ -53,11 +53,12 @@ aws eks update-kubeconfig --region us-east-1 --name education-eks
 }
 ```
 
-  2) Create Role for access with our ServiceAccount to the Secrets Manager:
-      * for `Identity provider` choose one available `OpenID Connect` which was automatically created during infrastructure provisioning;
-      * for `Audience` choose `sts.amazonaws.com`;
-      * for `Permission policies` choose our policy from the first step;
-      * create your role. After this edit its `Trust Relatoinship` like below (replace `YOUR_AWS_ACCOUNT_ID` and `YOUR_EKS_CLUSTER_ID` with approptiative values) :
+  2) Create IAM Role for access with our ServiceAccount to the Secrets Manager :
+  
+     * for `Identity provider` choose one available `OpenID Connect` which was automatically created during infrastructure provisioning;
+     * for `Audience` choose `sts.amazonaws.com`;
+     * for `Permission policies` choose our policy from the first step;
+     * create your role. After this edit its `Trust Relatoinship` like below (replace `YOUR_AWS_ACCOUNT_ID` and `YOUR_EKS_CLUSTER_ID` with approptiative values) :
 ```
 {
     "Version": "2012-10-17",
@@ -78,8 +79,12 @@ aws eks update-kubeconfig --region us-east-1 --name education-eks
 }
 ```
 
+  3) Move to `ansible/Node_App_Chart/values.yaml` and change `ServiceAccount.roleARN` value with Role ARN from the previous step;
+
+  4) Create IAM Role for future work with OpenSearch Service :
   
-  
+     * choose `Trusted entity type` - `AWS service`, `Use case` - `Lambda`;
+     * for `Permission policies` choose AWS managed `AWSLambdaBasicExecutionRole` & `AmazonOpenSearchServiceFullAccess`.
   
   
   
