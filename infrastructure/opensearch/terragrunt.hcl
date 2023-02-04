@@ -27,8 +27,8 @@ inputs = {
     advanced_security_options_anonymous_auth_enabled         = false
     advanced_security_options_internal_user_database_enabled = true
 
-    master_user_name     = "superadmin"
-    master_user_password = "supersecretkeyA1&"
+    master_user_name     = "YOUR_MASTER_USER_NAME"
+    master_user_password = "YOUR_MASTER_USER_PASSWORD"
 
     node_to_node_encryption_enabled = true
 

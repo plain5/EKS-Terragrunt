@@ -4,8 +4,8 @@ locals {
 
   cluster_name = "education-eks"
 
-  zone_name = "guard-lite.com"
+  zone_name = "YOUR_ZONE_NAME"
 
-  elb_dns_name = "k8s-applicat-applicat-6a14989cd4-691941937.us-east-1.elb.amazonaws.com"
+  elb_dns_name = "YOUR_ALB_DNS_NAME"
   
 }

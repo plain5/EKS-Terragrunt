@@ -1,12 +1,12 @@
 container:
-  image: 999360891534.dkr.ecr.us-east-1.amazonaws.com/node-app:latest-02-04-23.08-13-07
+  image: YOUR_IMAGE_URI
   minReplicasCount: 2
   maxReplicasCount: 4
   port: 3000
   name: node-js-application
 
 serviceAccount:
-  roleARN: arn:aws:iam::999360891534:role/secrets-manager-read-access
+  roleARN: YOUR_ROLE_ARN
   name: app
 
 secretName: my-secret-01
@@ -44,7 +44,7 @@ secretsVolume:
   name: secrets-store-inline
   mountPath: /mnt/secrets
 
-efsId: fs-0f039ce17009fd47d
+efsId: YOUR_EFS_ID
 
 podSelectorLabel: app
 
@@ -58,7 +58,7 @@ hpa:
 
 ingress:
   targetType: ip
-  sslCertificateARN: arn:aws:acm:us-east-1:999360891534:certificate/67f8950d-b391-4003-9e1d-3ff2c2459a09
+  sslCertificateARN: YOUR_SSL_CERTIFICATE_ARN
   scheme: internet-facing 
 
 livenessProbe:

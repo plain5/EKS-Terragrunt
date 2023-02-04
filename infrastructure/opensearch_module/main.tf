@@ -11,7 +11,7 @@ resource "aws_opensearch_domain" "example" {
         "AWS": "*"
       },
       "Action": "es:*",
-      "Resource": "arn:aws:es:${var.region}:999360891534:domain/${var.domain_name}/*"
+      "Resource": "arn:aws:es:${var.region}:YOUR_AWS_ACCOUNT_ID:domain/${var.domain_name}/*"
     }
   ]
 }
