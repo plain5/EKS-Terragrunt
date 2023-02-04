@@ -135,7 +135,7 @@ ansible-playbook deploy_application.yaml
 for the release name enter *application* (without asterisks)
 ```
 
-Now you can check results using `helm list` command!
+Now you can check results using `helm list -A` command!
 
 # 5️⃣3️⃣ Create a record for your ALB endpoint 5️⃣3️⃣
 * Perform the following :
@@ -194,6 +194,28 @@ for the release name enter *application* (without asterisks)
   * put `*` for `Index pattern name` (below that field, you'll see matched index with your logs named `cwl-`) -> click `Next step`;
   * choose `@timestamp` for `Time field` -> `Create index pattern`;
   * click on the three vertical lines in the left upper corner -> `Discover` -> that's all. Now you are accessible to dive deep into the given data!
-  
+
+# 🧹 Cleanup 🧹
+* If you want to remove K8s objects, perform the following :
+
+```
+helm uninstall application -n application
+```
+```
+kubectl delete -f ~/ansible/namespace/namespace.yaml
+```
+
+* If you want to delete AWS infrastructure, perform the following :
+
+  * delete all Docker images in the ECR repository;
+  * delete `Subscription filter` in CloudWatch EKS cluster `Log group`;
+  * delete Lambda function created by `Subscription filter`;
+  * delete Lambda function's `Log group` in CloudWatch.
+```
+      cd infrastructure/
+```
+```
+      terragrunt run-all destroy
+```
 Have you made it this far? I have the utmost respect for you 👏</br>
 glhf
