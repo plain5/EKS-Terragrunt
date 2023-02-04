@@ -20,7 +20,7 @@
     aws_secret_access_key = SECRET_ACCESS_KEY_FROM_THE_FIRST_STEP<br>*
   * change S3 Bucket config in the root `terragrunt.hcl`;
   * set up your credentials for OpenSearch Service `master user` in `infrastructure/opensearch/terragrunt.hcl`;
-  * change Route 53 `zone_name` in `infrastructure/opensearch_module/main.tf`;
+  * change Route 53 `zone_name` in `infrastructure/common_vars.hcl`;
   * replace `YOUR_AWS_ACCOUNT_ID` with your value in :
     * `infrastructure/opensearch_module/main.tf`;
     * `ansible/roles/build-push-to-ecr/tasks/main.yml`;
@@ -121,7 +121,7 @@ cd ~/ansible/
 ansible-playbook build-push-to-ecr.yml
 ```
 
-After these steps, navigate to your AWS ECR repository and copy just pushed Image URI. Then move to `ansible/Node_App_Chart/values.yaml` and change the `container.image` value by just copied. This only needs to be done once. Afterward, another Ansible role will be responsible for this.
+After these steps, navigate to your AWS ECR repository and copy just pushed Image URI. Then move to `~/ansible/Node_App_Chart/values.yaml` and change the `container.image` value by just copied. This only needs to be done once. Afterward, another Ansible role will be responsible for this.
   
 # 🚀 Deploy your application 🚀
 * Perform the following steps :
@@ -191,7 +191,7 @@ for the release name enter *application* (without asterisks)
 * The last step is to create `Index pattern` in OpenSearch Service :
   * open `OpenSearch Dashboards URL` main page;
   * click on the three vertical lines in the left upper corner -> `Discover` -> `Index patterns` -> `Create index pattern`;
-  * put `*` for `Index pattern name` (below that field, you'll see matched index with your logs named `cwl-`) -> click `Next step`;
+  * put `cwl*` for `Index pattern name` (below that field, you'll see matched index with your logs named `cwl-*`) -> click `Next step`;
   * choose `@timestamp` for `Time field` -> `Create index pattern`;
   * click on the three vertical lines in the left upper corner -> `Discover` -> that's all. Now you are accessible to dive deep into the given data!
 
@@ -208,7 +208,7 @@ kubectl delete -f ~/ansible/namespace/namespace.yaml
 * If you want to delete AWS infrastructure, perform the following :
 
   * delete all Docker images in the ECR repository;
-  * delete `Subscription filter` in CloudWatch EKS cluster `Log group`;
+  * delete `Subscription filter` in the CloudWatch EKS cluster `Log group`;
   * delete Lambda function created by `Subscription filter`;
   * delete Lambda function's `Log group` in CloudWatch.
 ```
