@@ -42,7 +42,7 @@
   *I can't but mention that infrastructure creation takes at least 70 minutes.*
   
 # 🧊 Update kubeconfig 🧊
-* After infrastructure provisioning run :
+* After infrastructure provisioning, run :
 ```
 aws eks update-kubeconfig --region us-east-1 --name education-eks
 ```
@@ -84,7 +84,7 @@ aws eks update-kubeconfig --region us-east-1 --name education-eks
      * for `Identity provider` choose one available `OpenID Connect` which was automatically created during infrastructure provisioning;
      * for `Audience` choose `sts.amazonaws.com`;
      * for `Permission policies` choose our policy from the first step;
-     * create your role. After this edit it `Trust Relatoinship` like below (replace `YOUR_AWS_ACCOUNT_ID` and `YOUR_EKS_CLUSTER_ID` with appropriative values) :
+     * create your role. After this, edit it's `Trust Relationship` like below (replace `YOUR_AWS_ACCOUNT_ID` and `YOUR_EKS_CLUSTER_ID` with appropriate values) :
 ```
 {
     "Version": "2012-10-17",
@@ -122,7 +122,7 @@ cd ~/ansible/
 ansible-playbook build-push-to-ecr.yml
 ```
 
-After these steps, navigate to your AWS ECR repository and copy just pushed Image URI. Then move to `~/ansible/Node_App_Chart/values.yaml` and change the `container.image` value by just copied. This only needs to be done once. Afterward, another Ansible role will be responsible for this.
+After these steps, navigate to your AWS ECR repository and copy URI of just pushed image. Then move to `~/ansible/Node_App_Chart/values.yaml` and change the `container.image` value by just copied. This only needs to be done once. Afterward, another Ansible role will be responsible for this.
   
 # 🚀 Deploy your application 🚀
 * Perform the following steps :
