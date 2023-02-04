@@ -141,7 +141,7 @@ Now you can check results using `helm list -A` command!
 # 5️⃣3️⃣ Create a record for your ALB endpoint 5️⃣3️⃣
 * Perform the following :
 
-  * uncomment `infrastructure/route53_record/terragrunt.hcl` file;
+  * uncomment `infrastructure/route53_record/terragrunt.hcl`;
   * run `kubectl get ingress -n application`. Copy value of the `ADDRESS` field;
   * navigate to `infrastructure/common_vars.hcl` and change `elb_dns_name` value by just copied;
 ```
@@ -177,7 +177,7 @@ for the release name enter *application* (without asterisks)
 * Navigate to OpenSearch Service in the  AWS Management Console : 
 
   * Click on `its-application` cluster -> open `OpenSearch Dashboards URL`;
-  * Log in with credentials provided at `infrastructure/opensearch/terragrunt.hcl` file;
+  * Log in with credentials provided at `infrastructure/opensearch/terragrunt.hcl`;
   * `Explore on my own` -> `Select your tenant` - `Global` -> `Confirm`;
   * click on the three vertical lines in the left upper corner -> `Security` -> `Roles` -> `all_access` -> `Mapped users`;
   * click on `Manage mapping` button -> for `Backend roles` put IAM Role ARN created in the `Prepare needed IAM Roles` block step №4 -> `Map`.
