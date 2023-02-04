@@ -16,6 +16,7 @@ RUN npm install
 #Copy source directory
 ADD its-testtask-node $APP_DIR
 
+#Change permissions for the script
 RUN chmod a+x /app/script.sh
 
 #Open port
