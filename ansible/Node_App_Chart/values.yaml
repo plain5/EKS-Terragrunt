@@ -1,5 +1,5 @@
 container:
-  image: 999360891534.dkr.ecr.us-east-1.amazonaws.com/node-app:latest-02-01-23.11-47-36
+  image: 999360891534.dkr.ecr.us-east-1.amazonaws.com/node-app:latest-02-04-23.08-13-07
   minReplicasCount: 2
   maxReplicasCount: 4
   port: 3000
@@ -44,7 +44,7 @@ secretsVolume:
   name: secrets-store-inline
   mountPath: /mnt/secrets
 
-efsId: fs-0aa2a71007914f5cc
+efsId: fs-0f039ce17009fd47d
 
 podSelectorLabel: app
 
@@ -60,3 +60,11 @@ ingress:
   targetType: ip
   sslCertificateARN: arn:aws:acm:us-east-1:999360891534:certificate/67f8950d-b391-4003-9e1d-3ff2c2459a09
   scheme: internet-facing 
+
+livenessProbe:
+  initialDelaySeconds: 5
+  periodSeconds: 5
+
+readinessProbe:
+  initialDelaySeconds: 5
+  periodSeconds: 5

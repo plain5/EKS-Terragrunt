@@ -25,14 +25,14 @@ spec:
           httpGet:
             path: /
             port: {{ .Values.container.port }}
-          initialDelaySeconds: 5
-          periodSeconds: 5
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
         readinessProbe:
           httpGet:
             path: /
             port: {{ .Values.container.port }}
-          initialDelaySeconds: 5
-          periodSeconds: 5
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
         volumeMounts:
           - name: {{ .Values.pv.name }}
             mountPath: "{{ .Values.pv.mountPath }}"

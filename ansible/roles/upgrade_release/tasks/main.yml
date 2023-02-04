@@ -9,7 +9,7 @@
 
 - name: Upgrade existing helm release
   shell:
-   helm upgrade {{ helm_release_name }} ~/ansible/Node_App_Chart/ --set container.image=999360891534.dkr.ecr.us-east-1.amazonaws.com/node-app:{{ latest_ecr_image_tag.stdout }}
+   helm upgrade {{ helm_release_name }} ~/ansible/Node_App_Chart/ -n {{ helm_release_name }} --set container.image=999360891534.dkr.ecr.us-east-1.amazonaws.com/node-app:{{ latest_ecr_image_tag.stdout }}
   register: upgrade_results
 
 

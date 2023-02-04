@@ -3,7 +3,7 @@
 
 - name: Deploy application using helm
   shell:
-   helm install {{ helm_release_name }} ~/ansible/Node_App_Chart/
+   kubectl apply -f ~/ansible/namespace/namespace.yaml &&  helm install {{ helm_release_name }} ~/ansible/Node_App_Chart/ -n {{ helm_release_name }}
   register: deploy_results
 
 - debug:
