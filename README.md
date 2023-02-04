@@ -25,7 +25,7 @@
     * `infrastructure/opensearch_module/main.tf`;
     * `ansible/roles/build-push-to-ecr/tasks/main.yml`;
     * `ansible/roles/upgrade_release/tasks/main.yml`.
-  * change `ingress.sslCertificateARN` & `efsId` in `ansible/Node_App_Chart/values.yaml`.
+  * don't forget to change `ingress.sslCertificateARN` & `efsId` in `ansible/Node_App_Chart/values.yaml` after infrastructure provisioning.
 
 # 🏰 Create infrastructure 🏰
 * Perform the following steps :
@@ -80,7 +80,7 @@ aws eks update-kubeconfig --region us-east-1 --name education-eks
 
   2) Create IAM Role for access with our ServiceAccount to the Secrets Manager :
   
-     * for `Identity provider` choose one available `OpenID Connect` which was automatically created during infrastructure building;
+     * for `Identity provider` choose one available `OpenID Connect` which was automatically created during infrastructure provisioning;
      * for `Audience` choose `sts.amazonaws.com`;
      * for `Permission policies` choose our policy from the first step;
      * create your role. After this edit it `Trust Relatoinship` like below (replace `YOUR_AWS_ACCOUNT_ID` and `YOUR_EKS_CLUSTER_ID` with appropriative values) :
