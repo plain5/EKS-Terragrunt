@@ -6,6 +6,7 @@
 
   - *[AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)*
   - *[Terraform](https://developer.hashicorp.com/terraform/downloads)*
+  - *[Terragrunt](https://terragrunt.gruntwork.io/docs/getting-started/install/)*
   - *[kubectl](https://kubernetes.io/docs/tasks/tools/)*
   - *[Helm](https://helm.sh/docs/intro/install/)*
   - *[Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)*
