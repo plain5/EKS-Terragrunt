@@ -21,7 +21,6 @@
     aws_secret_access_key = SECRET_ACCESS_KEY_FROM_THE_FIRST_STEP<br>*
   * change S3 Bucket config in the root `terragrunt.hcl`;
   * set up your credentials for OpenSearch Service `master user` in `infrastructure/opensearch/terragrunt.hcl`;
-  * change Route 53 `zone_name` in `infrastructure/common_vars.hcl`;
   * replace `YOUR_AWS_ACCOUNT_ID` with your value in :
     * `infrastructure/opensearch_module/main.tf`;
     * `ansible/roles/build-push-to-ecr/tasks/main.yml`;
@@ -140,7 +139,7 @@ Now you can check results using `helm list -A` command!
 
 # 5️⃣3️⃣ Create a record for your ALB endpoint 5️⃣3️⃣
 * Perform the following :
-
+  * replace Route 53 `zone_name` value with yours in `infrastructure/common_vars.hcl`;
   * uncomment `infrastructure/route53_record/terragrunt.hcl`;
   * run `kubectl get ingress -n application`. Copy value of the `ADDRESS` field;
   * navigate to `infrastructure/common_vars.hcl` and change `elb_dns_name` value by just copied;
