@@ -84,7 +84,7 @@ aws eks update-kubeconfig --region us-east-1 --name education-eks
      * for `Identity provider` choose one available `OpenID Connect` which was automatically created during infrastructure provisioning;
      * for `Audience` choose `sts.amazonaws.com`;
      * for `Permission policies` choose our policy from the first step;
-     * create your role. After this, edit it's `Trust Relationship` like below (replace `YOUR_AWS_ACCOUNT_ID` and `YOUR_EKS_CLUSTER_ID` with appropriate values) :
+     * create your role. After this, edit its `Trust Relationship` like below (replace `YOUR_AWS_ACCOUNT_ID` and `YOUR_EKS_CLUSTER_ID` with appropriate values) :
 ```
 {
     "Version": "2012-10-17",
