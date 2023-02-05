@@ -218,4 +218,4 @@ kubectl delete -f ~/ansible/namespace/namespace.yaml
       terragrunt run-all destroy
 ```
 Have you made it this far? I have the utmost respect for you 👏</br>
-glhf
+glhf.
