@@ -154,25 +154,6 @@ terragrunt run-all plan
 terragrunt run-all apply
 ```
 
-# 🛠️ How to update infrastructure? 🛠️
-* For example, the application folder got new changes. It's time to build a new Docker image : 
-```
-cd ~/ansible/
-```
-```
-ansible-playbook build-push-to-ecr.yml
-```
-  OK, the image is successfully pushed to ECR. What's next? It's time to update K8s :
-```
-cd ~/ansible/
-```
-```
-ansible-playbook upgrade_release.yaml
-```
-```
-for the release name enter *application* (without asterisks)
-```
-
 # 🔍 Enable CloudWatch Container Insights 🔎
 * Perform the following :
 
@@ -242,7 +223,26 @@ kubectl logs <POD_NAME>  -n amazon-cloudwatch
       * click on the three vertical lines in the left upper corner -> `Discover` -> that's all. Now you are accessible to dive deep into the given data!
 
   4) You can enable as many log streams as you wish. Select another `Log group` and perform the written in steps №2 & №3 actions. You'll only need to specify a new `Index pattern name` in the step №3.
-  
+
+# 🛠️ How to update infrastructure? 🛠️
+* For example, the application folder got new changes. It's time to build a new Docker image : 
+```
+cd ~/ansible/
+```
+```
+ansible-playbook build-push-to-ecr.yml
+```
+  OK, the image is successfully pushed to ECR. What's next? It's time to update K8s :
+```
+cd ~/ansible/
+```
+```
+ansible-playbook upgrade_release.yaml
+```
+```
+for the release name enter *application* (without asterisks)
+```
+
 # 🧹 Cleanup 🧹
 * If you want to remove K8s objects, perform the following :
 
