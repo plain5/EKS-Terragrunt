@@ -105,7 +105,7 @@ aws eks update-kubeconfig --region us-east-1 --name education-eks
 }
 ```
 
-  3) Move to `ansible/Node_App_Chart/values.yaml` and change `ServiceAccount.roleARN` value with Role ARN from the previous step;
+  3) Move to `ansible/Node_App_Chart/values.yaml` and change `ServiceAccount.roleARN` value with Role ARN from the previous step.
 
   4) Create IAM Role for future work with OpenSearch Service :
   
