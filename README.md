@@ -39,7 +39,7 @@ terragrunt run-all plan
 terragrunt run-all apply
 ```
   *I can't but mention that infrastructure creation takes at least 70 minutes.*<br>
-  *Keep in mind that it's not free to provision and hold this infrastructure. You'll be charged according to the AWS pricing model.*
+  *Keep in mind that it's `not free` to provision and hold this infrastructure. You'll be charged according to the AWS pricing model.*
   
 # 🧊 Update kubeconfig 🧊
 * After infrastructure provisioning, run :
