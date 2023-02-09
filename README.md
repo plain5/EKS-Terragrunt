@@ -257,7 +257,7 @@ kubectl delete -f ~/ansible/namespace/namespace.yaml
 
   * delete all Docker images in the ECR repository;
   * delete all `Subscription filters` in the CloudWatch `Log groups`;
-  * delete all Lambda functiosn created by `Subscription filters`;
+  * delete all Lambda functions created by `Subscription filters`;
   * delete all Lambda functions `Log groups` in CloudWatch;
   * disable CLoudWatch Container Insights :
 ```
